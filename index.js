@@ -28,7 +28,23 @@ function validatePassword() {
     }
   }
 
-  function storeFormData() {
+//   function storeFormData() {
+//     const formData = {
+//       firstName: document.getElementById('firstName').value,
+//       lastName: document.getElementById('lastName').value,
+//       email: document.getElementById('email').value,
+//       password: document.getElementById('password').value,
+//       dob: document.getElementById('dob').value,
+//       gender: document.getElementById('option').value
+//     };
+  
+//     localStorage.setItem('userData', JSON.stringify(formData));
+//   } 
+
+function storeFormData() {
+    let existingData = localStorage.getItem('userData');
+    existingData = existingData ? JSON.parse(existingData) : []; // Parse existing data or initialize as an empty array
+  
     const formData = {
       firstName: document.getElementById('firstName').value,
       lastName: document.getElementById('lastName').value,
@@ -38,5 +54,7 @@ function validatePassword() {
       gender: document.getElementById('option').value
     };
   
-    localStorage.setItem('userData', JSON.stringify(formData));
-  } 
+    existingData = [...existingData, formData]; // Concatenate existing data with new form data
+  
+    localStorage.setItem('userData', JSON.stringify(existingData)); // Store updated data back in localStorage
+  }
