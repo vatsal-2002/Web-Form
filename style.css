@@ -2,12 +2,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
-  /* background-color: #f0f0f0; */
-  background-image: url("https://www.womenbuildingaustralia.com.au/sites/default/files/images/Poly_BG_Grad%20%281%29_0_1.png");
+  background-image: url("./Image/bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .container {
-  max-width: 500px;
+  max-width: 35%;
   margin: 50px auto;
   background-color: #fff;
   padding: 20px;
@@ -18,7 +19,6 @@ body {
 h1 {
   text-align: center;
   color: #141414;
-  /* text-shadow: 0 0 2px black; */
 }
 
 #registration {
@@ -62,17 +62,36 @@ button {
 button:hover {
   background-color: #b026b5;
 }
-/* 
-@media (max-width: 600px) {
-  .container {
-    width: 80%;
-  }
-} */
 
-@media (max-width: 600px) {
+@media (min-width:300px) and (max-width: 600px) {
   .container {
-    width: 80%;
-    height: 90%;
+    max-width: 80%;
+  }
+
+  input,
+  select {
+    font-size: 14px;
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .container {
+    max-width: 70%;
+  }
+
+  #registration {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    max-width: 50%;
+  }
+}
+
+@media only screen and (max-width: 3000px) {
+  .container {
+    max-width: 60%;
+  }
+}

@@ -1,9 +1,9 @@
 function validatePassword() {
     var passwordInput = document.getElementById('password');
-    var password = passwordInput.value;
+    var password = passwordInput.value; 
   
-    var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    var isValidLength = password.length >= 8;
+    var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password); //check the Special Character
+    var isValidLength = password.length >= 8; // check length of password
   
     if (!isValidLength || !hasSpecialChar) {
       alert('Password must be at least 8 characters long and contain at least one special character.');
@@ -14,9 +14,11 @@ function validatePassword() {
   function validateDOB() {
     const dobInput = document.getElementById('dob');
     const dobError = document.getElementById('dobError');
+    
     const dob = new Date(dobInput.value);
     const minAge = 2;
-  
+    
+    //Get Current Date
     const today = new Date();
     const minDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
   
@@ -28,23 +30,14 @@ function validatePassword() {
     }
   }
 
-//   function storeFormData() {
-//     const formData = {
-//       firstName: document.getElementById('firstName').value,
-//       lastName: document.getElementById('lastName').value,
-//       email: document.getElementById('email').value,
-//       password: document.getElementById('password').value,
-//       dob: document.getElementById('dob').value,
-//       gender: document.getElementById('option').value
-//     };
-  
-//     localStorage.setItem('userData', JSON.stringify(formData));
-//   } 
 
 function storeFormData() {
+    // Retrieve existing data 
     let existingData = localStorage.getItem('userData');
-    existingData = existingData ? JSON.parse(existingData) : []; // Parse existing data or initialize as an empty array
-  
+    
+    // checks if there is existing data. If data exists, it is parsed from JSON format.
+    existingData = existingData ? JSON.parse(existingData) : [];
+
     const formData = {
       firstName: document.getElementById('firstName').value,
       lastName: document.getElementById('lastName').value,
@@ -54,9 +47,11 @@ function storeFormData() {
       gender: document.getElementById('option').value
     };
   
-    existingData = [...existingData, formData]; // Concatenate existing data with new form data
+    // Concatenate existing data with new form data
+    existingData = [...existingData, formData]; 
   
-    localStorage.setItem('userData', JSON.stringify(existingData)); // Store updated data back in localStorage
+    // Store updated data back in localStorage
+    localStorage.setItem('userData', JSON.stringify(existingData)); 
   }
 
 
