@@ -20,6 +20,13 @@ function validateDOB() {
     var selectedDate = new Date(dobInput.value);
     var currentDate = new Date();
 
+    // Check if the selected date is greater than or equal to the current date
+    if (selectedDate >= currentDate) {
+      dobError.textContent = "Please select a date of birth before today.";
+      dobInput.value = "";
+      return; 
+    }
+
     // Calculate the maximum allowed date (170 years ago from the current date)
     var maxAllowedDate = new Date();
     maxAllowedDate.setFullYear(currentDate.getFullYear() - 170);
@@ -35,6 +42,7 @@ function validateDOB() {
     dobError.textContent = "Please enter your date of birth.";
   }
 }
+
 
 function storeFormData() {
   // Retrieve existing data
@@ -59,7 +67,7 @@ function storeFormData() {
       const emailRegex = /^[a-zA-Z]+[0-9]*@[a-zA-Z]+\.(com|org|in)$/;
 
       if (emailRegex.test(email)) {
-        // Valid names and email, you can perform further actions here
+        // Valid names and email
         const formData = {
           firstName: firstName,
           lastName: lastName,
@@ -75,15 +83,25 @@ function storeFormData() {
         // Store updated data back in localStorage
         localStorage.setItem('userData', JSON.stringify(existingData));
 
-        // alert("Form submitted with valid names and email:\nFirst Name: " + firstName + "\nLast Name: " + lastName + "\nEmail: " + email);
       } else {
         alert("Please enter a valid email address with the format string[number]@string.(com|org|in).");
       }
     } else {
-      alert("Please enter valid first and last names (only letters allowed).");
+      if (!nameRegex.test(firstName)) {
+        alert("Please enter a valid first name (only letters allowed).");
+      }
+      if (!nameRegex.test(lastName)) {
+        alert("Please enter a valid last name (only letters allowed).");
+      }
     }
   } else {
-    alert("Please fill out both first name and last name fields.");
+    if (!firstName) {
+      alert("Please fill out the first name field.");
+    }
+    if (!lastName) {
+      alert("Please fill out the last name field.");
+    }
   }
 }
+
 
